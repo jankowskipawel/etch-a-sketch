@@ -18,13 +18,15 @@ let btnColorRed = document.querySelector('.red');
 let btnColorYellow = document.querySelector('.yellow');
 let btnColorBlue = document.querySelector('.blue');
 let btnColorGreen = document.querySelector('.green');
+let btnColorRandom = document.querySelector('.random');
+
 btnColorBlack.addEventListener('click', function(){currentColor='black'});
 btnColorPurple.addEventListener('click', function(){currentColor='purple'});
 btnColorBlue.addEventListener('click', function(){currentColor='blue'});
 btnColorGreen.addEventListener('click', function(){currentColor='green'});
 btnColorYellow.addEventListener('click', function(){currentColor='yellow'});
 btnColorRed.addEventListener('click', function(){currentColor='red'});
-
+btnColorRandom.addEventListener('click', function(){currentColor='random'});
 
 function changeSize(size)
 {
@@ -56,8 +58,21 @@ function clearGrid()
     changeSize(currentSize);
 }
 
+function random256()
+{
+    return Math.floor(Math.random() * 256);
+}
+
 function changeColor(elementName, color){
+    if(currentColor==='random')
+    {
+        color = `rgb(${random256()}, ${random256()}, ${random256()})`
+        elementName.style.backgroundColor = color;
+    }
+    else
+    {
     elementName.style.backgroundColor = color;
+    }
 }
 
 changeSize(16);
