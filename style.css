@@ -10,3 +10,9 @@
 .drawSquare {
     margin: auto;
 }
+
+.colors {
+    position: absolute;
+    left: 650px;
+    top: 20px;
+}

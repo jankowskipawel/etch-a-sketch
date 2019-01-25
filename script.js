@@ -1,3 +1,6 @@
+let currentColor = 'black';
+let currentSize = 0;
+
 let grid = document.querySelector('.grid');
 
 let btnSizeChange = document.querySelector('.sizeChange')
@@ -9,7 +12,19 @@ btnSizeChange.addEventListener('click', function(){
 let btnClear = document.querySelector('.clear');
 btnClear.addEventListener('click', clearGrid);
 
-let currentSize = 0;
+let btnColorBlack = document.querySelector('.black');
+let btnColorPurple = document.querySelector('.purple');
+let btnColorRed = document.querySelector('.red');
+let btnColorYellow = document.querySelector('.yellow');
+let btnColorBlue = document.querySelector('.blue');
+let btnColorGreen = document.querySelector('.green');
+btnColorBlack.addEventListener('click', function(){currentColor='black'});
+btnColorPurple.addEventListener('click', function(){currentColor='purple'});
+btnColorBlue.addEventListener('click', function(){currentColor='blue'});
+btnColorGreen.addEventListener('click', function(){currentColor='green'});
+btnColorYellow.addEventListener('click', function(){currentColor='yellow'});
+btnColorRed.addEventListener('click', function(){currentColor='red'});
+
 
 function changeSize(size)
 {
@@ -29,7 +44,7 @@ function changeSize(size)
 
         //set size of squares to equally fill the area
         newDiv.setAttribute("style","height: "+squareCalculatedSize +"%;"+"width: "+ squareCalculatedSize+"%;");
-        newDiv.addEventListener("mouseover", function () {changeColor(newDiv)});  
+        newDiv.addEventListener("mouseover", function () {changeColor(newDiv, currentColor)});  
     }
 }
 
@@ -41,8 +56,8 @@ function clearGrid()
     changeSize(currentSize);
 }
 
-function changeColor(elementName){
-    elementName.style.backgroundColor = 'red';
+function changeColor(elementName, color){
+    elementName.style.backgroundColor = color;
 }
 
 changeSize(16);
