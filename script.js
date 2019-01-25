@@ -6,8 +6,14 @@ btnSizeChange.addEventListener('click', function(){
     changeSize(size);
 })
 
+let btnClear = document.querySelector('.clear');
+btnClear.addEventListener('click', clearGrid);
+
+let currentSize = 0;
+
 function changeSize(size)
 {
+    currentSize = size;
     let squareCount = size**2;
     let squareCalculatedSize = 100 / size;
 
@@ -25,6 +31,14 @@ function changeSize(size)
         newDiv.setAttribute("style","height: "+squareCalculatedSize +"%;"+"width: "+ squareCalculatedSize+"%;");
         newDiv.addEventListener("mouseover", function () {changeColor(newDiv)});  
     }
+}
+
+function clearGrid()
+{
+    while (grid.firstChild) {
+        grid.removeChild(grid.firstChild);
+    }
+    changeSize(currentSize);
 }
 
 function changeColor(elementName){
