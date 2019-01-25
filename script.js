@@ -1,22 +1,34 @@
 let grid = document.querySelector('.grid');
 
 let btnSizeChange = document.querySelector('.sizeChange')
-btnSizeChange.addEventListener('click', function(){prompt('Type in side length of square. (16 = 16x16 square)')})
+btnSizeChange.addEventListener('click', function(){
+    let size = prompt('Type in side length of square. (16 = 16x16 square)');
+    changeSize(size);
+})
 
-let sideSize = 16;
-let squareCount = sideSize**2;
-let squareCalculatedSize = 100 / sideSize;
-
-for(let i=0; i<squareCount; i++)
+function changeSize(size)
 {
-    let newDiv = grid.appendChild(document.createElement('div'));
-    newDiv.classList.add('drawSquare');
+    let squareCount = size**2;
+    let squareCalculatedSize = 100 / size;
 
-    //set size of squares to equally fill the area
-    newDiv.setAttribute("style","height: "+squareCalculatedSize +"%;"+"width: "+ squareCalculatedSize+"%;");
-    newDiv.addEventListener("mouseover", function () {changeColor(newDiv)});  
+    //remove all elements from grid
+    while (grid.firstChild) {
+        grid.removeChild(grid.firstChild);
+    }    
+
+    for(let i=0; i<squareCount; i++)
+    {
+        let newDiv = grid.appendChild(document.createElement('div'));
+        newDiv.classList.add('drawSquare');
+
+        //set size of squares to equally fill the area
+        newDiv.setAttribute("style","height: "+squareCalculatedSize +"%;"+"width: "+ squareCalculatedSize+"%;");
+        newDiv.addEventListener("mouseover", function () {changeColor(newDiv)});  
+    }
 }
 
 function changeColor(elementName){
     elementName.style.backgroundColor = 'red';
 }
+
+changeSize(16);
